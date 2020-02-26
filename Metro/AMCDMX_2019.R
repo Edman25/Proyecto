@@ -2,10 +2,10 @@
 #install.packages("geosphere", dependencies = TRUE)
 #install.packages("jsonlite", dependencies = TRUE)
 #install.packages("rjson", dependencies = TRUE)
-install.packages("pollution")
+#install.packages("pollution")
 
 #Vamos a definir la carpeta de trabajo
-#setwd("/Users/adminyair/Desktop/Uber data")
+setwd("/home/edman/Documents/Progra/Proyecto_wd")
 
 #Cargamos paqueterías
 library("dplyr")
@@ -20,7 +20,7 @@ head(afluencia)
 #Filtramos (Sólo la que estamos buscando)
 afluencia_2019 <- filter(afluencia, Año == 2019) %>% 
                   group_by(Linea, Estacion, Mes, Dia) %>%
-                  summarise(Afluencia) %>%
+                  summarise(Afluencia) 
                   
                   
 
