@@ -6,7 +6,7 @@
 
 #Vamos a definir la carpeta de trabajo
 setwd("/home/edman/Documents/Progra/Proyecto_wd")
-graphs <- ("/home/edman/Documents/Progra/Proyecto_wd/grap")
+#graphs <- ("/home/edman/Documents/Progra/Proyecto_wd/grap")
 #Cargamos paqueterías
 library("dplyr")
 library("ggplot2")
@@ -28,12 +28,22 @@ afluencia_2018_linea <- filter(afluencia, Año == 2018) %>%
 
 ####Graficando un png para cada linea
 
-for (i in lineas) {
-  temp_plot = ggplot(data= subset(afluencia_2018_linea, Linea == i)) + 
-    geom_point(size=3, aes(x=Mes, y=afluencia_promedio_mensual )) +
-    ggtitle(i)
-    ggsave(temp_plot, file=paste0("plot_", i,".png"), width = 14, height = 10, units = "cm")
-}
+#for (i in lineas) {
+ #   temp_plot = ggplot(data= subset(afluencia_2018_linea, Linea == i)) + 
+  #  geom_point(size=3, aes(x=Mes, y=afluencia_promedio_mensual )) +
+   # ggtitle(i)
+    #ggsave(temp_plot, file=paste0("plot_", i,".png"), width = 14, height = 10, units = "cm")
+#}
 
+pdf("lines.pdf")
+for (i in unique(afluencia_2018_linea$Mes)){
+     temp_line <- filter(afluencia_2018_linea, Mes == i)
+     print(ggplot(temp_line, aes(x=Linea, y=afluencia_promedio_mensual ))+geom_point()+
+     ggtitle(i))
+}
+dev.off()
+
+
+####
 
 
