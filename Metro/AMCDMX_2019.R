@@ -3,6 +3,7 @@
 #install.packages("jsonlite", dependencies = TRUE)
 #install.packages("rjson", dependencies = TRUE)
 #install.packages("pollution")
+install.packages("reshape2")
 
 #Vamos a definir la carpeta de trabajo
 setwd("/home/edman/Documents/Progra/Proyecto_wd")
@@ -10,6 +11,7 @@ setwd("/home/edman/Documents/Progra/Proyecto_wd")
 #Cargamos paqueterías
 library("dplyr")
 library("ggplot2")
+library("reshape2")
 
 #Renombramos la el nombre del dataset (para poder manipularlo mejor)
 afluencia <- read.csv("afluencia-diaria-del-metro-cdmx.csv", header = TRUE)
@@ -43,7 +45,10 @@ for (i in unique(afluencia_2018_linea$Mes)){
 }
 dev.off()
 
+####GRáfico 2018 con varias líneas
+ggplot(afluencia_2018_linea, aes(x = Mes, y = afluencia_promedio_mensual, color = Linea)) + 
+  geom_line(aes(afluencia_2018_linea$Mes)) +
+  geom_point(aes(afluencia_2018_linea$Mes))
 
 ####
-
 
