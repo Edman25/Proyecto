@@ -46,10 +46,11 @@ for (i in unique(afluencia_2018_linea$Mes)){
 dev.off()
 
 ####GRáfico 2018 con varias líneas
-labels <- c("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+Meses <- c("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+lineas_metro <- c("Linea 1", "Linea 2", "Linea 3", "Linea 4", "Linea 5", "Linea 6", "Linea 7", "Linea 8", "Linea 9", "Linea A", "Linea B", "Linea 12")
 
-ggplot(afluencia_2018_linea, aes(x = factor(Mes, level = labels), y = afluencia_promedio_mensual, color = Linea)) + 
-  geom_line() +
+ggplot(afluencia_2018_linea, aes(x = factor(Mes, level = labels), y = afluencia_promedio_mensual, color = factor(Linea, level = lineas_metro)))+ 
+  geom_line()+
   geom_point()
   
 
