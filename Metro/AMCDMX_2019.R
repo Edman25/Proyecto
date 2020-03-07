@@ -3,7 +3,7 @@
 #install.packages("jsonlite", dependencies = TRUE)
 #install.packages("rjson", dependencies = TRUE)
 #install.packages("pollution")
-install.packages("reshape2")
+#install.packages("reshape2")
 
 #Vamos a definir la carpeta de trabajo
 setwd("/home/edman/Documents/Progra/Proyecto_wd")
@@ -46,9 +46,13 @@ for (i in unique(afluencia_2018_linea$Mes)){
 dev.off()
 
 ####GRáfico 2018 con varias líneas
-ggplot(afluencia_2018_linea, aes(x = Mes, y = afluencia_promedio_mensual, color = Linea)) + 
-  geom_line(aes(afluencia_2018_linea$Mes)) +
-  geom_point(aes(afluencia_2018_linea$Mes))
+labels <- c("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre")
+
+ggplot(afluencia_2018_linea, aes(x = factor(Mes, level = labels), y = afluencia_promedio_mensual, color = Linea)) + 
+  geom_line() +
+  geom_point()
+  
+
 
 ####
 
