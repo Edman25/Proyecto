@@ -1,0 +1,17 @@
+# Importamos librerías que vayamos a usar, en este caso 'Pandas', para manipulación de datos
+import pandas as pd
+# Creamos nuestro DataFrame y seleccionamos archivo que usaremos
+data = pd.read_csv("afluencia-diaria-del-metro-cdmx.csv")
+# Leemos los primeros 5 renglones
+data.head()
+# Creamos otro dataframe pero esta vez sólo con datos del año 2018
+afluencia_2018 = data[data.Año == 2018]
+# Comprobamos información (leyendo los primeros renglones)
+afluencia_2018.head()
+# Contamos nuestros datos para estar seguros que estan correctos los datos y comparamos de manera muy superficial
+afluencia_2018['Mes'].value_counts()
+afluencia_2018['Linea'].value_counts()
+afluencia_2018['Estacion'].value_counts()
+# Creamos una máscara para saber si tenemos algún dato faltante en la columna de 'Afluencia' en nuestra base de datos y contamos los resultados que nos arroja con 'False'
+mask = afluencia_2018['Afluencia'].isna().value_counts()
+mask
